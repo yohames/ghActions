@@ -17,4 +17,4 @@ jobs:
         steps:
             - uses: actions/hello-world-javascript-action@v1.1
               with:
-                who-to-greet: "World"
+                who-to-greet: "from an action in the GitHub Action marketplace! 👋"
