@@ -1,0 +1,20 @@
+name: Step Types
+
+on:
+    workflow_dispatch:
+jobs:
+    say-hello-inline-bash:
+        runs-on: ubuntu-24.04
+        steps:
+            - run: echo "Hello World from inline bash script!"
+    say-hello-from-file:
+        runs-on: ubuntu-24.04
+        steps:
+            - run: print("Hello World from file in python")
+              shell: python
+    say-hello-from-action:
+        runs-on: ubuntu-24.04
+        steps:
+            - uses: actions/hello-world-javascript-action@v1.1
+              with:
+                who-to-greet: "World"
