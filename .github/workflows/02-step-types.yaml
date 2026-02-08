@@ -15,6 +15,6 @@ jobs:
     say-hello-from-action:
         runs-on: ubuntu-24.04
         steps:
-            - uses: actions/hello-world-javascript-action@v1.1
+            - uses: actions/hello-world-javascript-action@081a6d193d1dcb38460df1e6927486d748730f9d # v1.1
               with:
                 who-to-greet: "from an action in the GitHub Action marketplace! 👋"
