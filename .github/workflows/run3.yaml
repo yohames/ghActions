@@ -1,7 +1,5 @@
 name: run3
 on:
-    push:
-        branches: [ 'staging' ]
     pull_request:
         branches: [ '**' ]
 jobs:
