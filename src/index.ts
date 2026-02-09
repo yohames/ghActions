@@ -1,1 +1,1 @@
-console.log("Hello World from index.ts!3️⃣");
+console.log("Testing PR vs Push Triggers!");

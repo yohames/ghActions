@@ -1,0 +1,9 @@
+name: run3
+on:
+    pull_request:
+        branches: [ '**' ]
+jobs:
+    run3:
+        runs-on: ubuntu-latest
+        steps:
+            - run: echo "Hello World from run3!3️⃣"
