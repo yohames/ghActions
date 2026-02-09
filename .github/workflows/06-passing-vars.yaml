@@ -1,0 +1,27 @@
+name: Passing Variables Between Steps
+on:
+    workflow_dispatch:
+jobs:
+    producer:
+        runs-on: ubuntu-24.04
+        steps:
+            - name: Set output variable
+              id: generate-foo
+              run: |
+                foo=bar
+                # 1) Step Output variable (for job output)
+                echo "OUTPUT_VAR=I_AM_OUTPUT_VAR" >> $GITHUB_OUTPUT
+                # 2) Job-scoped environment variable
+                echo "FOO=${foo}" >> "$GITHUB_ENV"
+            - name: Inspect values inside producer
+              run: |
+                  echo "FOO (set via GITHUB_ENV): $FOO"
+                  echo "foo (step output): ${{ steps.generate-foo.outputs.foo }}" # visible
+    consumer:
+        runs-on: ubuntu-24.04
+        needs: producer
+        steps:
+            - name: Inspect values inside consumer (note Foo is unset here since GITHUB_ENV is job-scoped)
+              run: |
+                  echo "FOO (set via GITHUB_ENV): $FOO" # not visible
+                  echo "foo (step output): ${{ steps.generate-foo.outputs.foo }}" # not visible
