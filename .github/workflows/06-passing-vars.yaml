@@ -24,4 +24,4 @@ jobs:
             - name: Inspect values inside consumer (note Foo is unset here since GITHUB_ENV is job-scoped)
               run: |
                   echo "FOO (set via GITHUB_ENV): $FOO" # not visible
-                  echo "foo (step output): ${{ steps.generate-foo.outputs.foo }}" # not visible
+                  echo "foo (step output): ${{ needs.producer.outputs }}" # not visible
