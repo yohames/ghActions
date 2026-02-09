@@ -1,7 +1,7 @@
 name: run3
 on:
     push:
-        branches: [ main ]
+        branches: [ '**' ]
     pull_request:
         branches: [ '**' ]
 jobs:
