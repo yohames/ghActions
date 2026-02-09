@@ -1,0 +1,9 @@
+name: run1
+on:
+    push:
+        branches: [ main ]
+jobs:
+    run1:
+        runs-on: ubuntu-24.04
+        steps:
+            - run: echo "Hello World from run1!1️⃣"
