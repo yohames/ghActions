@@ -1,7 +1,7 @@
 name: run2
 on:
     push:
-        branches: [ main ]
+        branches: [ '**' ]
 jobs:
     run2:
         runs-on: ubuntu-latest
