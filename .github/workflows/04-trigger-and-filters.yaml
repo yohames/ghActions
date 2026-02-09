@@ -11,7 +11,7 @@ on:
             - reopened
         paths:
             - "03-pr-filter/filters/*.md"
-            - "03-pr-filter/filters/*.txt"
+            - "!03-pr-filter/filters/*.txt"
     workflow_dispatch:
 
 jobs:
