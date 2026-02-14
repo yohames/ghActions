@@ -1,0 +1,61 @@
+name: Runner types
+
+on:
+    workflow_dispatch:
+
+jobs:
+    ######################################
+    #  GITHUB (MICROSOFT) HOSTED RUNNERS
+    ######################################
+    #  GitHub provides hosted runners which run on Microsoft Azure.
+    #
+    #  Open source projects get some free usage and pro/team/enterprise GitHub
+    #  subscriptions also come with some number of minutes included (after which
+    #  you pay based on usage.
+    #
+    #  These are the easiest to get started with (require no additional configuration
+    #  and it makes sense to use the free minutes, but only on workflows which are not in the
+    #  critical path for your production deployments. For usage beyond your quota I suggest
+    #  looking at the below options for higher performance (and more affordable)
+    #  approaches!
+    ######################################
+
+    github-hosted-runner:
+        name: Ubuntu 24.04 VM
+        runs-on: ubuntu-24.04
+        steps:
+            - name: Show runner info
+              run: |
+                echo "Running on a GitHub-hosted runner!"
+                echo "Runner name: $RUNNER_NAME"
+                echo "Runner OS: $RUNNER_OS"
+                echo "Runner architecture: $RUNNER_ARCH"
+
+  ######################################
+  #  3RD PARTY HOSTED RUNNERS
+  ######################################
+  #  There are companies which host GitHub Action runners that provide increased performance for less $$$
+  # 
+  #  One such company happens to be the sponsor of the course! 🙏
+  # 
+  #  ✨ Namespace Labs (https://namespace.so/) ✨
+  #
+  #  You can likely cut your build times (and your CI bill) signiticantly by using their runners
+  #  and it only takes changing a single line of yaml:
+  #  
+  #  - runs-on: ubuntu-24.04 
+  #  + runs-on: namespace-profile-default # The default as of July 2025 is Ubuntu 22.04
+  #
+  #  (They also offer MacOS and Windows runners!)
+  ######################################
+  
+    namespace-hosted-runner:
+        name: Namespace Labs hosted runner
+        runs-on: namespace-profile-default
+        steps:
+            - name: Show runner info
+              run: |
+                echo "Running on a Namespace Labs hosted runner!"
+                echo "Runner name: $RUNNER_NAME"
+                echo "Runner OS: $RUNNER_OS"
+                echo "Runner architecture: $RUNNER_ARCH"
