@@ -1,0 +1,33 @@
+# Persisting Data (Artifacts)
+# By default, all data generated during a workflow run is discarded after the run completes. However, you can use artifacts to persist data between jobs and workflow runs. Artifacts are files or directories that are uploaded to GitHub and can be downloaded later.
+name: Artifacts
+on:
+    workflow_dispatch:
+
+jobs:
+    artifact-upload:
+        name: Create and upload an artifact
+        runs-on: ubuntu-24.04
+        steps:
+            - name: Create a file to upload as an artifact
+              run: |
+                echo "This is an artifact created during the workflow run." > artifact.txt
+
+            - name: Upload artifact
+              uses: actions/upload-artifact@v6
+              with:
+                name: my-artifact
+                path: artifact.txt
+
+    artifact-download:
+        name: Download and use an artifact
+        runs-on: ubuntu-24.04
+        needs: artifact-upload
+        steps:
+            - name: Download artifact
+              uses: actions/download-artifact@v6
+              with:
+                name: my-artifact
+            - name: Show artifact content
+              run: |
+                cat artifact.txt
