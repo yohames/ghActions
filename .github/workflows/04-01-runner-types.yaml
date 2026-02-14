@@ -51,7 +51,7 @@ jobs:
   
     namespace-hosted-runner:
         name: Namespace Labs hosted runner
-        runs-on: namespace-profile-default
+        runs-on: namespacelabs/nscloud-setup
         steps:
             - name: Show runner info
               run: |
