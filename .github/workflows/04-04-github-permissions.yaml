@@ -6,29 +6,29 @@ jobs:
         runs-on: ubuntu-24.04
         permissions:
             pull-requests: read # Only read access to pull request data
-            continue-on-error: true # Allow workflow to continue even if permissions are insufficient
-            steps:
-                - uses: actions/checkout@v4
-                - name: Install GitHub CLI
-                  run: sudo apt-get update -qq && sudo apt-get install -y gh
-                - name: List the first 5 open PRs (allowed)
-                  run: gh pr list --limit 5  
-                  env:
-                    GH_TOKEN: ${{ github.token }}
-                - name: Attempt to list pull requests
-                  env:
-                    GH_TOKEN: ${{ github.token }}
-                  run: |
-                    gh pr edit 1 --add-label "documentation"
-                - name: Confirm the failure
-                  if: failure()
-                  run: echo "❌ Write operation was blocked - token is read-only."
+        continue-on-error: true # Allow workflow to continue even if permissions are insufficient
+        steps:
+          - uses: actions/checkout@ff7abcd0c3c05ccf6adc123a8cd1fd4fb30fb493
+          - name: Install GitHub CLI
+            run: sudo apt-get update -qq && sudo apt-get install -y gh
+          - name: List the first 5 open PRs (allowed)
+            run: gh pr list --limit 5  
+            env:
+              GH_TOKEN: ${{ github.token }}
+          - name: Attempt to list pull requests
+            env:
+              GH_TOKEN: ${{ github.token }}
+            run: |
+              gh pr edit 1 --add-label "documentation"
+          - name: Confirm the failure
+            if: failure()
+            run: echo "❌ Write operation was blocked - token is read-only."
     read-write-pr:
         runs-on: ubuntu-24.04
         permissions:
             pull-requests: write # Read/write access to pull request data
         steps:
-            - uses: actions/checkout@v4
+            - uses: actions/checkout@ff7abcd0c3c05ccf6adc123a8cd1fd4fb30fb493
             - name: Install GitHub CLI
               run: sudo apt-get update -qq && sudo apt-get install -y gh
             - name: List the first 5 open PRs (allowed)
