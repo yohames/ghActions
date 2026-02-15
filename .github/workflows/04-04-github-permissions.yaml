@@ -39,7 +39,7 @@ jobs:
               env:
                 GH_TOKEN: ${{ github.token }}
               run: |
-                gh pr edit 1 --add-label "documentation"
+                gh pr edit 8 --add-label "documentation" # Updates PR #8 to add the "documentation" label
             - name: Confirm the success
               if: success()
               run: echo "✅ Write operation succeeded - token has write permissions."
