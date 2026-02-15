@@ -11,7 +11,7 @@ jobs:
             # Attempt to restore (misses on first run)
             - name: Restore cache
               id: demo-cache
-              uses: actions/cache@v6
+              uses: actions/cache@v5
               with:
                 path: demo-cache
                 key: demo-cache-v1
@@ -27,7 +27,7 @@ jobs:
             # Save cache only if we generated new content
             - name: Save cache on miss
               if: steps.demo-cache.outputs.cache-hit != 'true'
-              uses: actions/cache@v6
+              uses: actions/cache@v5
               with:
                 path: demo-cache
                 key: demo-cache-v1
