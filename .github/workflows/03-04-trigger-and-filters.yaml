@@ -4,6 +4,7 @@ on:
     push:
         branches:
             - "example-branch/*"
+            - "release/*"
     pull_request:
             # With your current config, it runs for PRs targeting any base branch, not just main.
             # Why:
@@ -20,7 +21,7 @@ on:
             - synchronize
             - reopened
         paths:
-            - "03-pr-filter/filters/*.md"
+            - "03-pr-filter/filters/**"
             - "!03-pr-filter/filters/*.txt"
     workflow_dispatch:
 
@@ -32,4 +33,27 @@ jobs:
               run: |
                 echo "=== $GITHUB_EVENT_NAME payload ==="
                 cat "$GITHUB_EVENT_PATH"
-    
+
+
+
+# `release/1.0` is valid as long as you do not already have a branch named `release` (same conflict rule you just hit with `example-branch`).
+
+# Create it with:
+
+# ```bash
+# git switch -c release/1.0
+# git push -u origin release/1.0
+# ```
+
+# If you want it based on `main` explicitly:
+
+# ```bash
+# git switch -c release/1.0 main
+# git push -u origin release/1.0
+# ```
+
+# Quick check for conflict first:
+
+# ```bash
+# git show-ref --verify --quiet refs/heads/release && echo "branch 'release' exists"
+# ```
