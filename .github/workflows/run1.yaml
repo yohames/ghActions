@@ -1,9 +1,0 @@
-name: run1
-on:
-    push:
-        branches: [ '**' ]
-jobs:
-    run1:
-        runs-on: ubuntu-latest
-        steps:
-            - run: echo "Hello World from run1!1️⃣"
