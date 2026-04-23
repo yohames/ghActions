@@ -1,0 +1,31 @@
+name: Runner types
+
+on:
+    workflow_dispatch:
+
+jobs:
+    github-hosted:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Show runner info
+              run: |
+                echo "Running on ${{ runner.os }} - ${{ runner.arch }}"
+                echo "Runner name: ${{ runner.name }}"
+
+    self-hosted:
+        runs-on: self-hosted
+        steps:
+            - name: Show runner info
+              run: |
+                echo "Running on ${{ runner.os }} - ${{ runner.arch }}"
+                echo "Runner name: ${{ runner.name }}"
+
+    namespace-hosted:
+        runs-on: namespace-profile-yohames
+        steps:
+            - name: Show runner info
+              run: |
+                echo "Running on ${{ runner.os }} - ${{ runner.arch }}"
+                echo "Runner name: ${{ runner.name }}"
+
+    
