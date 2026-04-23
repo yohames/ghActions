@@ -16,6 +16,8 @@ on:
             #
             # PR event type is one of: opened, synchronize, reopened.
             # The PR includes matching file changes (03-pr-filter/filters/*.md) and not only excluded .txt files.
+        branches:
+            - release/*
         types:
             - opened
             - synchronize
