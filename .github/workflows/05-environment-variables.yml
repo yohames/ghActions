@@ -1,0 +1,37 @@
+name: Environment Variables
+
+on:
+    workflow_dispatch:
+
+env:
+    WORKFLOW_VAR: "I am a workflow-level variable"
+
+jobs:
+    job-1:
+        runs-on: ubuntu-latest
+        env:
+            JOB_VAR: "I am a job-1 variable"
+        steps:
+            - name: Print environment variables in job-1
+              env:
+                STEP_VAR: "I am a step 1 variable in job-1"
+              run: |
+                echo "=== job-1 environment variables ==="
+                echo "WORKFLOW_VAR: $WORKFLOW_VAR"
+                echo "JOB_VAR: $JOB_VAR"
+                echo "STEP_VAR: $STEP_VAR"
+            - name: Print environment variables in step 2 of job-1
+              run: |
+                echo "=== job-1 step 2 environment variables ==="
+                echo "WORKFLOW_VAR: $WORKFLOW_VAR"
+                echo "JOB_VAR: $JOB_VAR"
+                echo "STEP_VAR: ${STEP_VAR:-<UNSET>}" # This will be empty since STEP_VAR is not defined for this step
+    job-2:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Print environment variables in job-2
+              run: |
+                echo "=== job-2 environment variables ==="
+                echo "WORKFLOW_VAR: $WORKFLOW_VAR"
+                echo "JOB_VAR: ${JOB_VAR:-<UNSET>}" # This will be empty since JOB_VAR is not defined for job-2
+                echo "STEP_VAR: ${STEP_VAR:-<UNSET>}" # This will be empty since STEP_VAR is not defined for job-2
