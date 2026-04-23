@@ -11,7 +11,7 @@ jobs:
         steps:
             - name: Set output
               id: producer-step-1
-              run: echo "foo=bar" >> $GITHUB_OUTPUT"
+              run: echo "foo=bar" >> "$GITHUB_OUTPUT"
     consumer:
         runs-on: ubuntu-latest
         needs: producer
