@@ -6,6 +6,16 @@ on:
             - "example-branch/*"
             - "release/*"
     pull_request:
+            # With your current config, it runs for PRs targeting any base branch, not just main.
+            # Why:
+            # You defined pull_request.types and pull_request.paths.
+            # You did not define pull_request.branches (base branch filter), so there is no target-branch restriction.
+            # That means PRs into main, develop, release/*, etc. can all trigger it.
+            #
+            # It will trigger only when all of these are true:
+            #
+            # PR event type is one of: opened, synchronize, reopened.
+            # The PR includes matching file changes (03-pr-filter/filters/*.md) and not only excluded .txt files.
         types:
             - opened
             - synchronize
