@@ -32,14 +32,14 @@ jobs:
                 working-directory: 04-advanced-features
         steps:
             - uses: actions/checkout@v6 #downloads your repository into the runner workspace.
+            - uses: pnpm/action-setup@v6 #sets up the pnpm package manager in the GitHub Actions environment, allowing you to use pnpm commands in subsequent steps.
+              with:
+                version: 'latest'
             - uses: actions/setup-node@v6 #prepares the Node.js runtime and enables npm cache behavior using the lockfile config in
               with:
                 node-version: 'latest'
                 cache: 'pnpm'
                 # Point cache action at the specific lock-file path
                 cache-dependency-path: 04-advanced-features/pnpm-lock.yaml
-            - uses: pnpm/action-setup@v6 #sets up the pnpm package manager in the GitHub Actions environment, allowing you to use pnpm commands in subsequent steps.
-              with:
-                version: 'latest'
             - name: Install dependencies
               run: pnpm install --frozen-lockfile
