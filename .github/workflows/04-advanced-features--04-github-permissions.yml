@@ -22,7 +22,7 @@ jobs:
     repo-push-fail:
         runs-on: ubuntu-latest
         permissions:
-            contents: read
+            contents: write
         continue-on-error: true
         steps:
             - uses: actions/checkout@v6 #downloads your repository into the runner workspace.
