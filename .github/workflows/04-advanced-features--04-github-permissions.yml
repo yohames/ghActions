@@ -1,9 +1,12 @@
 name: Permissions
 
 on:
+    push:
+        branches: [ main ]
     workflow_dispatch:
 
 jobs:
+    # JOB 1: Demonstrates that local file writing is ALWAYS allowed
     read-only-job:
         runs-on: ubuntu-latest
         permissions:
@@ -11,17 +14,24 @@ jobs:
         continue-on-error: true
         steps:
             - uses: actions/checkout@v6 #downloads your repository into the runner workspace.
-            - name: Attempt to create a file
+            - name: Attempt to create local file
               run: |
                 echo "This will fail due to insufficient permissions" > new-file.txt
                 cat new-file.txt
-    read-write-job:
+    # JOB 2: Demonstrates that pushing back to GitHub will fail
+    repo-push-fail:
         runs-on: ubuntu-latest
         permissions:
-            contents: write
+            contents: read
+        continue-on-error: true
         steps:
             - uses: actions/checkout@v6 #downloads your repository into the runner workspace.
-            - name: Create a file
+            - name: Attempt to push to repository
               run: |
-                echo "This will succeed due to sufficient permissions" > written-file.txt
-                cat written-file.txt
+                git config user.name "GitHub Actions"
+                git config user.email "actions@github.com"
+                echo "Trying to sneak into the repo" => secret.txt
+                git add secret.txt
+                git commit -m "Attempting to push with read-only permissions"
+                echo "This push will fail with a 403 Forbidden error ... due to insufficient permissions"
+                git push origin HEAD:main
