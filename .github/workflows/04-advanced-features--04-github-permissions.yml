@@ -1,0 +1,15 @@
+name: Permissions
+
+on:
+    workflow_dispatch:
+
+jobs:
+    permissions:
+        runs-on: ubuntu-latest
+        permissions:
+            contents: read
+        continue-on-error: true
+        steps:
+            - uses: actions/checkout@v6 #downloads your repository into the runner workspace.
+            - name: Attempt to create a file
+              run: echo "This will fail due to insufficient permissions" > new-file.txt
