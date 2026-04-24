@@ -17,10 +17,30 @@ jobs:
               if: steps.temp-cache.outputs.cache-hit != 'true'
               run: |
                 mkdir -p my-cache 
-                echo "This is some cached content" >> my-cache/cached-content.txt
+                echo "This is some cached content" > my-cache/cached-content.txt
                 echo "Cache created at $(date)" >> my-cache/cached-content.txt
             - name: Display cache content
               run: |
                 echo "Cache hit: ${{ steps.temp-cache.outputs.cache-hit }}"
                 echo "Cache content:"
                 cat my-cache/cached-content.txt
+
+    node-cache:
+        runs-on: ubuntu-latest
+        defaults:
+            run:
+                working-directory: 04-advanced-features
+        steps:
+            - uses: actions/checkout@v6 #downloads your repository into the runner workspace.
+            - uses: pnpm/action-setup@v6 #sets up the pnpm package manager in the GitHub Actions environment, allowing you to use pnpm commands in subsequent steps.
+              with:
+                version: 'latest'
+                cache: true
+            - uses: actions/setup-node@v6 #prepares the Node.js runtime and enables npm cache behavior using the lockfile config in
+              with:
+                node-version: 'latest'
+                cache: 'pnpm'
+                # Point cache action at the specific lock-file path
+                cache-dependency-path: 04-advanced-features/pnpm-lock.yaml
+            - name: Install dependencies
+              run: pnpm install --frozen-lockfile
