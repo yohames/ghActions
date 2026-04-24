@@ -16,7 +16,7 @@ jobs:
             - name: Create cache
               if: steps.temp-cache.outputs.cache-hit != 'true'
               run: |
-                  echo "This is some cached content" > my-cache/cached-content.txt
+                  echo "This is some cached content" >> my-cache/cached-content.txt
                   echo "Cache created at $(date)" >> my-cache/cached-content.txt
             - name: Display cache content
               run: |
