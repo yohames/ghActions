@@ -13,5 +13,5 @@ runs:
   using: "composite"
   steps:
     - name: Print greeting
-      run: echo "${{ inputs.greet }}"
+      run: echo From Composite Action:"${{ inputs.greet }}"
       shell: bash
