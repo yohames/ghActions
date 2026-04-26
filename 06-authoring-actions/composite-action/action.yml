@@ -1,0 +1,17 @@
+name: "Hello World"
+description: "A simple GitHub Action that prints \"Hello, World!\" to the console."
+inputs:
+  greet:
+    description: "The greeting message to print"
+    required: true
+    default: "Hello, World!"
+outputs:
+  greeting:
+    description: "The greeting message that was printed"
+    value: ${{ inputs.greet }}
+runs:
+  using: "composite"
+  steps:
+    - name: Print greeting
+      run: echo "${{ inputs.greet }}"
+      shell: bash

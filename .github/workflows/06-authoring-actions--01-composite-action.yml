@@ -1,0 +1,19 @@
+name: Composite Action Demo
+
+on:
+    workflow_dispatch:
+
+jobs:
+    hello-world-1:
+        runs-on: ubuntu-latest
+        name: Hello World 1
+        steps:
+            - uses: actions/checkout@v6 #downloads your repository into the runner workspace.
+            - id: composite-action-instance
+              uses: ./06-authoring-actions/composite-action
+              with:
+                  greet: "Hello from Job 1 Step 1"
+            - env:
+                  GREET: ${{ steps.composite-action-instance.outputs.greeting }}
+              run: echo greeting "$GREET"
+              shell: bash
