@@ -10,7 +10,8 @@ jobs:
       with:
         foo: "Hello from the caller workflow!"
         environment: staging
-      secrets: inherit
+      secrets: 
+        DEV_SECRET: ${{ secrets.DEV_SECRET }}
     
     call-reusable-workflow-sha:
         name: Invoke reuseable workflow with repo + commit hash
