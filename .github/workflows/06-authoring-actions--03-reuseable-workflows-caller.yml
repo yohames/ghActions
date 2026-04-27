@@ -14,10 +14,9 @@ jobs:
     
     call-reusable-workflow-sha:
         name: Invoke reuseable workflow with repo + commit hash
-        uses: yohames/ghActions/.github/workflows/06-authoring-actions--02-reuseable-workflows-source.yml@02004cbb5d4eac97a822f550d4bdc3f71c40a2d4
+        uses: yohames/ghActions/.github/workflows/06-authoring-actions--02-reuseable-workflows-source.yml@a9c408a61137660789ff04267c76fecc57dd479b
         with:
-          foo: "Hello from the caller workflow using a specific commit SHA!"
+          foo: "Hello! from the caller workflow using a specific commit SHA!"
           environment: Dev
         secrets: 
             DEV_SECRET: ${{ secrets.DEV_SECRET }}
-            
