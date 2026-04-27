@@ -12,7 +12,7 @@ on:
                 type: string
         secrets:
             # NOTE: You can only pass repo/org secrets here, not environment secrets
-            EXAMPLE_SECRET:
+            DEV_SECRET:
               required: true
 
 jobs:
@@ -23,7 +23,7 @@ jobs:
           - name: job in reusable workflow
             env:
               Foo: ${{ inputs.foo }}
-              EXAMPLE_SECRET: ${{ inputs.secrets.EXAMPLE_SECRET }}
+              DEV_SECRET: ${{ secrets.DEV_SECRET }}
             run: |
                 echo "Foo: $Foo"
-                echo "EXAMPLE_SECRET: $EXAMPLE_SECRET"
+                echo "DEV_SECRET: $DEV_SECRET"
