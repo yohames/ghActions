@@ -1,0 +1,6 @@
+name: Hello (Typescript)
+description: A simple "Hello World" action written in Typescript.
+
+runs:
+  using: docker
+  image: Dockerfile
