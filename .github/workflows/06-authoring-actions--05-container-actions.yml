@@ -1,0 +1,13 @@
+name: Container Actions
+
+on: push
+
+jobs:
+    run-test:
+        name: Run Vitest tests
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v6
+            - name: Run Container action
+              uses: ./
