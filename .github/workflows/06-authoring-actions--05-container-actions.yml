@@ -10,4 +10,4 @@ jobs:
             - name: Checkout code
               uses: actions/checkout@v6
             - name: Run Container action
-              uses: ./
+              uses: ./06-authoring-actions/container-actions
