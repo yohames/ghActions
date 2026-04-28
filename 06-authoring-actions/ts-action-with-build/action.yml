@@ -1,0 +1,16 @@
+name: Hello Ts Action with Build
+description: A simple workflow to demonstrate using a JavaScript action that requires a build step (TypeScript in this case)
+inputs:
+  greet:
+    description: 'Greeting to display'
+    required: true
+    default: 'World'
+outputs:
+  time:
+    description: 'The time the action was run'
+runs:
+  using: 'node24'
+  main: 'dist/index.js'
+branding:
+  icon: 'terminal'
+  color: 'blue'
