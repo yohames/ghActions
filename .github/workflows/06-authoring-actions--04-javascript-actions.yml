@@ -1,0 +1,16 @@
+name: Javascript Actions
+
+on:
+    workflow_dispatch:
+
+jobs:
+    javascript-no-build:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v6
+            - name: Run JavaScript action without build
+              uses: ./06-authoring-actions/ts-action-with-build
+              id: hello
+              with:
+                greet: "💻Workflow action"
