@@ -8,10 +8,6 @@ on:
             config-path:
                 required: true
                 type: string
-        # secrets:
-        # NOTE: You can only pass repo/org secrets here, not environment secrets
-        # personal_access_token:
-        #     required: true
 
 jobs:
     reusable_workflow_job:
