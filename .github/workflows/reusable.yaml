@@ -1,0 +1,25 @@
+name: Reusable Workflow🚀🚀🚀🚀
+
+on:
+    workflow_call:
+        # NOTE: You can only pass inputs and secrets to reusable workflows, not environment variables
+        inputs:
+            # NOTE: You can only pass primitive types (string, boolean, number) as inputs to reusable workflows, not complex types like arrays or objects
+            config-path:
+                required: true
+                type: string
+        # secrets:
+            # NOTE: You can only pass repo/org secrets here, not environment secrets
+            # personal_access_token:
+            #     required: true
+
+jobs:
+    reusable_workflow_job:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Call reusable workflow
+              uses: ./.github/workflows/reusable.yaml
+              with:
+                config-path: ${{ inputs.config-path }}
+              # secrets:
+                # personal_access_token: ${{ secrets.personal_access_token }}

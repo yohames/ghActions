@@ -1,0 +1,11 @@
+name: Reusable Workflow Caller
+
+on:
+  workflow_dispatch:
+
+jobs:
+  call_reusable_workflow:
+    runs-on: ubuntu-latest
+    uses: ./.github/workflows/reusable.yaml
+    with:
+      config-path: "😹path/to/config.yaml"
