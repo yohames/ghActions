@@ -1,0 +1,10 @@
+name: TS Code Check Pipeline
+description: A pipeline to lint format and build a TS action
+inputs:
+  target-dir:
+    description: "The target directory to run the checks on"
+    required: true
+    default: "."
+runs:
+  using: "node20"
+  main: "dist/index.js"
