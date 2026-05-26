@@ -4,6 +4,7 @@ import * as exec from "@actions/exec";
 async function run(): Promise<void> {
   try {
     const targetDir = core.getInput("target-dir", { required: true });
+    const actionPath = process.env.GITHUB_ACTION_PATH ?? ".";
     // Step 1: Quality Check (Linting)
     core.info('🚀 Running linting script via pnpm...');
     await exec.exec("npx", ["oxlint", "--", targetDir]);
@@ -14,7 +15,7 @@ async function run(): Promise<void> {
 
     // Step 3: Compilation (Compilation happens ONLY if style/lint pass)
     core.info('📦 Building TypeScript project via pnpm...');
-    await exec.exec("pnpm", ["run", "build"]);
+    await exec.exec("pnpm", ["run", "build"], { cwd: actionPath });
     core.info('✅ Pipeline passed! Code is clean, formatted, and successfully built.');
   } catch (error) {
     if (error instanceof Error) {
