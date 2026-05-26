@@ -8,6 +8,22 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v6
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10.6.2
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: pnpm
+          cache-dependency-path: 06-authoring-actions/ts-action/pnpm-lock.yaml
+      - name: Install dependencies
+        working-directory: ./06-authoring-actions/ts-action
+        run: pnpm install --frozen-lockfile
+      - name: Build the action package
+        working-directory: ./06-authoring-actions/ts-action
+        run: pnpm run build
       - name: Run Ts action
         uses: ./06-authoring-actions/ts-action
     #   - name: Install dependencies
