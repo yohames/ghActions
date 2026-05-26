@@ -26,6 +26,9 @@ jobs:
         run: pnpm run build
       - name: Run Ts action
         uses: ./06-authoring-actions/ts-action
+        with:
+          target-dir: './06-authoring-actions/ts-action'
+
     #   - name: Install dependencies
     #     run: pnpm install
     #   - name: Run linter and formatter
